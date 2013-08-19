@@ -1,0 +1,10 @@
+%h1 Comments
+- comments.each do |comment|
+  %div.comment
+    %div.comment.author
+      = comment.author.email
+      = link_to('Edit', edit_story_comment_path( comment ) )
+      = link_to('Delete', story_comment_path( comment ), method: :delete, data: { confirm: 'Are you sure?' } )
+    %div.comment.body
+      = comment.body
+    %br

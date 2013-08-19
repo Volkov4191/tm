@@ -38,8 +38,10 @@ gem 'haml-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use StateMachine
-
 gem 'state_machine', '~> 1.2.0'
+
+#Use filter
+gem 'ransack'
 
 # Use unicorn as the app server
 # gem 'unicorn'

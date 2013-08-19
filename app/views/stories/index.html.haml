@@ -1,12 +1,25 @@
+
+= render 'filters'
+
+%br
+
 %h1 Listing stories
 
 %table
   - @stories.each do |story|
     %tr
       %td
-        = story.title
+        = link_to(story.title, story)
       %td
         = story.body
       %td
         = story.state
       %td
+        = story.performer
+      %td
+        = render 'action_buttons', :story => story
+
+
+%br
+
+= link_to( 'New', new_story_path )

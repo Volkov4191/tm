@@ -1,0 +1,10 @@
+= form_for comment do |f|
+  %div.field
+    = f.label :body
+    = f.text_area :body
+
+  = f.hidden_field :author_id, :value => current_user.id
+  = f.hidden_field :story_id, :value => story.id
+
+  %div.actions
+    = f.submit 'Save'

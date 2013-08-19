@@ -1,7 +1,9 @@
 class StoriesController < ApplicationController
 
   def index
-    @stories = Story.all
+    @filter = Story.search(params[:q])
+    @stories = @filter.result
+
   end
 
   def new
@@ -12,7 +14,7 @@ class StoriesController < ApplicationController
     @story = Story.new( story_params )
 
     if @story.save
-      redirect_to :controller => 'stories', :action => 'show', :id => @story.id
+      redirect_to story_path( @story )
     else
       render 'new'
     end
@@ -25,15 +27,24 @@ class StoriesController < ApplicationController
   end
 
   def edit
-
+    @story = Story.find( params[:id] )
   end
 
   def update
+    @story = Story.find( params[:id] )
 
+    if @story.update( story_params )
+      redirect_to @story
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @story = Story.find(params[:id])
+    @story.destroy
 
+    redirect_to stories_path
   end
 
   def event
@@ -42,13 +53,14 @@ class StoriesController < ApplicationController
     if story
       story.fire_state_event( params[:event] )
       story.save
-      redirect_to :controller => 'stories', :action => 'show', :id => story.id
+
+      redirect_to story
     end
   end
 
   private
-    def story_params
-      params.require(:story).permit( :title, :body, :author_id )
-    end
+  def story_params
+    params.require(:story).permit( :title, :body, :author_id, :performer_id )
+  end
 
 end

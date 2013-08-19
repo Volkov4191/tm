@@ -1,0 +1,15 @@
+= search_form_for @filter do |f|
+  %div.field
+    = f.label 'Performer'
+    = f.select :performer_id_eq, User.all.map{|u| [u.email, u.id]}, :include_blank => true
+
+  %div.field
+    = f.label 'Author'
+    = f.select :author_id_eq, User.all.map{|u| [u.email, u.id]}, :include_blank => true
+
+  %div.field
+    = f.label 'State'
+    = f.select :state_eq, Story.state_machine.states.map{|s| [s.name, s.name]}, :include_blank => true
+
+  %div.actions
+    = f.submit 'Filter'

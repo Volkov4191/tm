@@ -1,0 +1,10 @@
+- if story.can_start?
+  = link_to 'Start', :controller => 'stories', :action => 'event', :id => story.id, :event => 'start'
+- elsif story.can_finish?
+  = link_to 'Finish', :controller => 'stories', :action => 'event', :id => story.id, :event => 'finish'
+
+- if story.can_accept?
+  = link_to 'Accept', :controller => 'stories', :action => 'event', :id => story.id, :event => 'accept'
+
+- if story.can_reject?
+  = link_to 'Reject', :controller => 'stories', :action => 'event', :id => story.id, :event => 'reject'
