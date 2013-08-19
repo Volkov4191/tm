@@ -32,8 +32,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'haml-rails'
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+# Use StateMachine
+
+gem 'state_machine', '~> 1.2.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'

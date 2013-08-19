@@ -1,0 +1,38 @@
+%h1
+  = @story.title
+  = @story.state
+
+%div
+  = @story.body
+
+%h1 Comments
+- @story.story_comments.each do |comment|
+  %div.comment
+    %div.comment.author
+      = comment.author.email
+    %div.comment.body
+      = comment.body
+
+
+- if @story.can_start?
+  = link_to 'Start', :controller => 'stories', :action => 'event', :id => @story.id, :event => 'start'
+- elsif @story.can_finish?
+  = link_to 'Finish', :controller => 'stories', :action => 'event', :id => @story.id, :event => 'finish'
+
+- if @story.can_accept?
+  = link_to 'Accept', :controller => 'stories', :action => 'event', :id => @story.id, :event => 'accept'
+
+- if @story.can_reject?
+  = link_to 'Reject', :controller => 'stories', :action => 'event', :id => @story.id, :event => 'reject'
+
+%h1 Add comment
+= form_for @comment do |f|
+  %div.field
+    = f.label :body
+    = f.text_area :body
+
+  = f.hidden_field :author_id, :value => current_user.id
+  = f.hidden_field :story_id, :value => @story.id
+
+  %div.actions
+    = f.submit

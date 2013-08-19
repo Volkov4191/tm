@@ -1,0 +1,12 @@
+%h1 Listing stories
+
+%table
+  - @stories.each do |story|
+    %tr
+      %td
+        = story.title
+      %td
+        = story.body
+      %td
+        = story.state
+      %td

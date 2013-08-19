@@ -1,0 +1,21 @@
+%h1 New story
+
+= form_for @story do |f|
+  %div.field
+    = f.label :title
+    = f.text_field :title
+
+  %div.field
+    = f.label :body
+    = f.text_area :body
+
+  %div.field
+    = f.label :performer_id
+    = f.select :performer_id, User.all.map{|u| [u.email, u.id]}, :include_blank => true
+
+  = f.hidden_field :author_id, :value => current_user.id
+
+  %div.actions
+    = f.submit 'Save'
+
+
