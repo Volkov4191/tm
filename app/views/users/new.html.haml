@@ -1,3 +1,13 @@
+- if @user.errors.any?
+  %div.alert.alert-error
+    %a.close{ 'data-dismiss' => 'alert'}
+    %strong
+      = pluralize(@user.errors.count, "error") + ' prohibited this comment from being saved:'
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li
+          =msg
+
 %div.container
   %div.row
     %div.span4.offset4.well

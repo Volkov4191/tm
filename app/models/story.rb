@@ -4,6 +4,9 @@ class Story < ActiveRecord::Base
 
   has_many :story_comments
 
+  validates :title, presence: true, length: {minimum: 5, maximum: 255}
+
+
   state_machine initial: :new do
     event :start do
       transition [:rejected,:new] => :started

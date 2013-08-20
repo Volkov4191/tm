@@ -5,6 +5,8 @@ class StoryCommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "Comment was successfully created"
       redirect_to story_path( @comment.story_id )
+    else
+      render 'edit'
     end
   end
 
