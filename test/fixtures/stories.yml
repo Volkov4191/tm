@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: FirstTask
+  body: BodyFristTask
+  state: new
+  author_id: 1
+  performer_id: 1
+
+two:
+  title: SecondTask
+  body: BodySecondTask
+  state: new
+  author_id: 1
+  performer_id: 1
+
+three:
+  title: ThirdTask
+  body: BodyThirdTask
+  state: new
+  author_id: 1
+  performer_id: 2
+
+Four:
+  title: FourthTask
+  body: BodyFourthTask
+  state: new
+  author_id: 2
+  performer_id: 1

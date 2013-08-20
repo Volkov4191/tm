@@ -3,7 +3,6 @@ class StoriesController < ApplicationController
   def index
     @filter = Story.search(params[:q])
     @stories = @filter.result
-
   end
 
   def new
@@ -14,6 +13,7 @@ class StoriesController < ApplicationController
     @story = Story.new( story_params )
 
     if @story.save
+      flash[:notice] = "Story was successfully created"
       redirect_to story_path( @story )
     else
       render 'new'
@@ -34,27 +34,30 @@ class StoriesController < ApplicationController
     @story = Story.find( params[:id] )
 
     if @story.update( story_params )
-      redirect_to @story
+      flash[:notice] = "Story was successfully updated"
+      redirect_to story_path( @story )
     else
       render 'edit'
     end
   end
 
   def destroy
-    @story = Story.find(params[:id])
+    @story = Story.find( params[:id] )
     @story.destroy
 
+    flash[:notice] = "Story was successfully deleted"
     redirect_to stories_path
   end
 
   def event
-    story = Story.find( params[:id] )
+    @story = Story.find( params[:id] )
 
-    if story
-      story.fire_state_event( params[:event] )
-      story.save
+    if @story
+      @story.fire_state_event( params[:event] )
+      @story.save
 
-      redirect_to story
+      flash[:notice] = "Story state was successfully updated"
+      redirect_to story_path( @story )
     end
   end
 
