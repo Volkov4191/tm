@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
 
     if user && user.authenticate( params[:password] )
-      session[:user_id] = user.id
+      auth user
       flash[:notice] = "Welcome to Simple Task Manager"
       redirect_to stories_url
     else
