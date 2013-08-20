@@ -9,7 +9,8 @@ class UsersController < ApplicationController
     @user = User.new( new_params )
 
     if @user.save
-      redirect_to root, :notice => 'Signed up'
+      flash[:notice] = "Welcome to Simple Task Manager"
+      redirect_to stories_url
     else
       render 'new'
     end
