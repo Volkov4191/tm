@@ -9,7 +9,7 @@ Taskmanager::Application.routes.draw do
 
   get '/stories/:id/:event', to: 'stories#event'
 
-  get 'login' => 'sessions#login'
+  get 'login' => 'sessions#login', as: 'login'
   get 'logout' => 'sessions#logout'
   get 'signup' => 'users#new'
 

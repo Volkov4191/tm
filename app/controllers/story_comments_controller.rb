@@ -3,7 +3,8 @@ class StoryCommentsController < ApplicationController
     @comment = StoryComment.new( comment_params )
 
     if @comment.save
-      redirect_to story_path( @comment.story )
+      flash[:notice] = "Comment was successfully created"
+      redirect_to story_path( @comment.story_id )
     end
   end
 
@@ -15,7 +16,8 @@ class StoryCommentsController < ApplicationController
     @comment = StoryComment.find( params[:id] )
 
     if @comment.update( comment_params )
-      redirect_to @comment.story
+      flash[:notice] = "Comment was successfully updated"
+      redirect_to story_path(@comment.story_id)
     else
       render 'edit'
     end
@@ -23,9 +25,14 @@ class StoryCommentsController < ApplicationController
 
   def destroy
     @comment = StoryComment.find( params[:id] )
-    @comment.destroy
 
-    redirect_to story_path(@comment.story)
+    story_id = @comment.story_id
+
+    if @comment.destroy
+      flash[:notice] = "Comment was successfully deleted"
+    end
+
+    redirect_to story_path( story_id )
   end
 
   private

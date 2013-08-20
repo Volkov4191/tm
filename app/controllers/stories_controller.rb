@@ -24,6 +24,7 @@ class StoriesController < ApplicationController
     @story = Story.find( params[:id] )
 
     @comment = StoryComment.new()
+    @comment.story = @story
   end
 
   def edit

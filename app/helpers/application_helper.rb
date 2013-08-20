@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-  def auth user
-    session[:user_id] = user.id
+  def current_user
+    @current_user ||= User.find( session[:user_id] ) if session[:user_id]
   end
 
-  def is_auth?
-    session[:user_id].present?
+  def auth user
+    session[:user_id] = user.id
   end
 
 end

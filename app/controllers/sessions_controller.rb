@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login
+
   def login
   end
 
@@ -7,9 +9,10 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate( params[:password] )
       session[:user_id] = user.id
-      redirect_to stories_url, :notice => "Logged in!"
+      flash[:notice] = "Welcome to Simple Task Manager"
+      redirect_to stories_url
     else
-      flash.now.alert = "Invalid email or password"
+      flash[:error]= "Invalid email or password"
       render 'login'
     end
   end
