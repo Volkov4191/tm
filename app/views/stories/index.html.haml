@@ -1,25 +1,34 @@
+- model_class = Story
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
 
 = render 'filters'
 
-%br
-
-%h1 Listing stories
-
-%table
-  - @stories.each do |story|
+%table.table.table-striped
+  %thead
     %tr
-      %td
-        = link_to(story.title, story)
-      %td
-        = story.body
-      %td
-        = story.state
-      %td
-        = story.performer
-      %td
-        = render 'action_buttons', :story => story
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:state)
+      %th= model_class.human_attribute_name(:performer_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - if @stories.count == 0
+      %tr
+        %td
+        %td= 'No stories'
 
+    - @stories.each do |story|
+      %tr
+        %td= story.id
+        %td= link_to story.title, story_path(story)
+        %td
+          %span{:class => 'state ' + story.state}
+            = story.state
+        %td= story.performer.email if story.performer
+        %td= story.created_at
+        %td
+          = render 'action_buttons', :story => story
 
-%br
-
-= link_to( 'New', new_story_path )
+= link_to t('.new', :default => t("helpers.links.new")), new_story_path, :class => 'btn btn-primary'

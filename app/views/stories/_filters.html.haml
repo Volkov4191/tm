@@ -1,15 +1,23 @@
 = search_form_for @filter do |f|
-  %div.field
-    = f.label 'Performer'
-    = f.select :performer_id_eq, User.all.map{|u| [u.email, u.id]}, :include_blank => true
+  %div.row-fluid
+    %div.span3
+      %div.control-group
+        = f.label 'Performer:'
+        %div.controls
+          = f.select :performer_id_eq, User.all.map{|u| [u.email, u.id]}, :include_blank => true
+    %div.span3
+      %div.control-group
+        = f.label 'Author:'
+        %div.controls
+          = f.select :author_id_eq, User.all.map{|u| [u.email, u.id]}, :include_blank => true
+    %div.span3
+      %div.control-group
+        = f.label 'State:'
+        %div.controls
+          = f.select :state_eq, Story.state_machine.states.map{|s| [s.name, s.name]}, :include_blank => true
+    %div.span3
+      %div.control-group
+        %br
 
-  %div.field
-    = f.label 'Author'
-    = f.select :author_id_eq, User.all.map{|u| [u.email, u.id]}, :include_blank => true
-
-  %div.field
-    = f.label 'State'
-    = f.select :state_eq, Story.state_machine.states.map{|s| [s.name, s.name]}, :include_blank => true
-
-  %div.actions
-    = f.submit 'Filter'
+        %div.controls
+          = f.submit 'Filter', :class => 'btn btn-info'

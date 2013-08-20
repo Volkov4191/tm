@@ -7,10 +7,12 @@ class StoriesControllerTest < ActionController::TestCase
 
     auth @user = users(:one)
 
+    @story.author = @user
   end
 
   def teardown
     @story = nil
+    @user = nil
   end
 
 

@@ -1,10 +1,21 @@
-%h1 Comments
-- comments.each do |comment|
-  %div.comment
-    %div.comment.author
-      = comment.author.email
-      = link_to('Edit', edit_story_comment_path( comment ) )
-      = link_to('Delete', story_comment_path( comment ), method: :delete, data: { confirm: 'Are you sure?' } )
-    %div.comment.body
-      = comment.body
-    %br
+- model_class = StoryComment
+.page-header
+  %h1 Comments
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:body)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - if comments.count == 0
+      %tr
+        %td
+        %td= 'No comments'
+
+    - comments.each do |comment|
+      %tr
+        %td= comment.body
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_story_comment_path(comment), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), story_comment_path(comment), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

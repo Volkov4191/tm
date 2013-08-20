@@ -1,17 +1,17 @@
-%h1 Sign up
+%div.container
+  %div.row
+    %div.span4.offset4.well
+      %legend
+        Please Sign Up
 
-= form_for @user do |f|
-  %div.field
-    = f.label :email
-    = f.text_field :email
+      = form_for @user do |f|
+        = f.text_field :email, {:class => 'span12', :placeholder => 'email'}
 
-  %div.field
-    = f.label :password
-    = f.password_field :password
+        = f.password_field :password, {:class => 'span12', :placeholder => 'password'}
 
-  %div.field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
+        = f.password_field :password_confirmation, {:class => 'span12', :placeholder => 'confirm password'}
 
-  %div.actions
-    = f.submit
+        = f.submit 'Sign Up', :class => 'btn btn-success btn-block'
+
+
+

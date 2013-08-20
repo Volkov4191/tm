@@ -10,6 +10,9 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Welcome to Simple Task Manager"
+
+      auth @user
+
       redirect_to stories_url
     else
       render 'new'
