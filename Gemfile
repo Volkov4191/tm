@@ -8,6 +8,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem "twitter-bootstrap-rails"
 gem 'ransack'
 gem 'jquery-rails'
+gem 'turbolinks'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
