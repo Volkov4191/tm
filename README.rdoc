@@ -2,6 +2,8 @@
 
 {<img src="https://travis-ci.org/Volkov4191/tm.png?branch=master" alt="Build Status" />}[https://travis-ci.org/Volkov4191/tm]
 
+{<img src="https://coveralls.io/repos/Volkov4191/tm/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/Volkov4191/tm]
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
