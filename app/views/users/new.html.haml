@@ -14,14 +14,4 @@
       %legend
         Please Sign Up
 
-      = form_for @user do |f|
-        = f.text_field :email, {:class => 'span12', :placeholder => 'email'}
-
-        = f.password_field :password, {:class => 'span12', :placeholder => 'password'}
-
-        = f.password_field :password_confirmation, {:class => 'span12', :placeholder => 'confirm password'}
-
-        = f.submit 'Sign Up', :class => 'btn btn-success btn-block'
-
-
-
+      = render 'form'

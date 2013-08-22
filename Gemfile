@@ -10,6 +10,7 @@ gem "twitter-bootstrap-rails"
 gem 'ransack'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
