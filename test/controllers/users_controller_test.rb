@@ -1,12 +1,13 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
+
   def setup
-    @user = users(:one)
+    @user = FactoryGirl.build(:user)
   end
 
   def teardown
-    @story = nil
+    @user = nil
   end
 
   test "should get registration form" do
@@ -17,7 +18,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: {email: @user.email, password: @user.password_digest, password_confirmation: @user.password_digest }
+      post :create, user: {email: @user.email, password: @user.password, password_confirmation: @user.password }
     end
 
     assert_equal 'Welcome to Simple Task Manager', flash[:notice]

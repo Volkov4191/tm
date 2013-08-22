@@ -3,16 +3,12 @@ include ApplicationHelper
 
 class StoriesControllerTest < ActionController::TestCase
   def setup
-    @story = stories(:one)
-
-    auth @user = users(:one)
-
-    @story.author = @user
+    @story = FactoryGirl.create( :story )
+    auth @story.author
   end
 
   def teardown
     @story = nil
-    @user = nil
   end
 
 
@@ -30,7 +26,7 @@ class StoriesControllerTest < ActionController::TestCase
 
   test "should create story" do
     assert_difference('Story.count') do
-      post :create, story: {title: 'StoryName', body: 'StoryBody'}
+      post :create, story: {title: @story.title, body: @story.body}
     end
 
     assert_equal 'Story was successfully created', flash[:notice]
@@ -52,7 +48,11 @@ class StoriesControllerTest < ActionController::TestCase
   end
 
   test "should update story" do
-    put :update, :id => @story.id, story: { id: @story.id, name:'StoryName_edit', body:'StoryBody_edit', performer_id: @user.id, author_id: @user.id }
+    put :update, :id => @story.id, story: { id: @story.id,
+                                            name: @story.title + '_edit',
+                                            body: @story.body + '_edit',
+                                            performer_id: @story.performer_id,
+                                            author_id: @story.author_id }
 
     assert_equal 'Story was successfully updated', flash[:notice]
 

@@ -1,12 +1,10 @@
 require 'test_helper'
+include ApplicationHelper
 
 class StoryCommentsControllerTest < ActionController::TestCase
   def setup
-    auth @user = users(:one)
-
-    @comment = story_comments(:one)
-    @story = stories(:one)
-
+    @comment = FactoryGirl.create( :story_comment )
+    auth @comment.author
   end
 
   def teardown
@@ -16,12 +14,12 @@ class StoryCommentsControllerTest < ActionController::TestCase
 
   test "should create comment" do
     assert_difference('StoryComment.count') do
-      post :create, story_comment: {body: 'StoryCommentBody', author_id: @user.id, story_id: @story.id }
+      post :create, story_comment: {body: @comment.body, author_id: @comment.author_id, story_id: @comment.story_id }
     end
 
     assert_equal 'Comment was successfully created', flash[:notice]
 
-    assert_redirected_to story_path( @story )
+    assert_redirected_to story_path( @comment.story_id )
   end
 
   test "should get edit" do
@@ -31,7 +29,7 @@ class StoryCommentsControllerTest < ActionController::TestCase
   end
 
   test "should update comment" do
-    put :update, :id => @comment.id, story_comment: { body:'StoryCommentBody_edit', author_id: @user.id, story_id: @comment.story_id }
+    put :update, :id => @comment.id, story_comment: { body:'StoryCommentBody_edit', author_id: @comment.author_id, story_id: @comment.story_id }
 
     assert_equal 'Comment was successfully updated', flash[:notice]
 

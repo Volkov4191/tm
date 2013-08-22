@@ -22,3 +22,4 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem "factory_girl_rails", "~> 4.0"
