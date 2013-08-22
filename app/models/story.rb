@@ -6,6 +6,7 @@ class Story < ActiveRecord::Base
 
   validates :title, presence: true, length: {minimum: 5, maximum: 255}
 
+  default_scope order('created_at DESC')
 
   state_machine initial: :new do
     event :start do
