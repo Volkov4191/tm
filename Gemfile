@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'simple_form'
 gem 'coveralls', require: false
+gem 'heroku'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
